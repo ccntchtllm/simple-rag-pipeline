@@ -44,16 +44,21 @@ pip install -r requirements.txt
 
 #### Configure Environment Variables
 
-We use OpenAI for the LLM (you can modify/replace it in `src/util/invoke_ai.py`). Make sure to set your OpenAI API key. For example:
+This project now uses [Ollama](https://ollama.ai/) to run the LLM locally.  Set
+the server URL and model name using the following environment variables (defaults
+are shown):
 
 ```sh
-export OPENAI_API_KEY='your_openai_api_key'
+export OLLAMA_URL="http://localhost:11434"
+export OLLAMA_MODEL="phi3"
 ```
 
-You will also need a Cohere key for the re-ranking feature used in `src/impl/retriever.py`. You can create an account and create an API key at https://cohere.com/
+If you still wish to use the OpenAI API you can modify `src/util/invoke_ai.py`
+and set `OPENAI_API_KEY`.  You will also need a Cohere key for the re‑ranking
+feature used in `src/impl/retriever.py`:
 
 ```sh
-set -x CO_API_KEY "xxx"
+export CO_API_KEY="xxx"
 ```
 
 ## Usage

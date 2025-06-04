@@ -1,5 +1,5 @@
 from interface.base_evaluator import BaseEvaluator, EvaluationResult
-from util.invoke_ai import invoke_ai
+from util.invoke_ai import invoke_ai2
 from util.extract_xml import extract_xml_tag
 
 SYSTEM_PROMPT = """
@@ -27,8 +27,11 @@ class Evaluator(BaseEvaluator):
         <expected_answer>\n{expected_answer}\n</expected_answer>
         """
 
-        response_content = invoke_ai(
-            system_message=SYSTEM_PROMPT, user_message=user_prompt
+        response_content = invoke_ai2(
+            None,
+            None,
+            system_message=SYSTEM_PROMPT,
+            user_message=user_prompt,
         )
 
         reasoning = extract_xml_tag(response_content, "reasoning")
