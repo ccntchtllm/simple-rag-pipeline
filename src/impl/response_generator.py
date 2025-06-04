@@ -1,6 +1,6 @@
 from typing import List
 from interface.base_response_generator import BaseResponseGenerator
-from util.invoke_ai import invoke_ai
+from util.invoke_ai import invoke_ai2
 
 
 SYSTEM_PROMPT = """
@@ -19,4 +19,4 @@ class ResponseGenerator(BaseResponseGenerator):
             f"<question>\n{query}\n</question>"
         )
 
-        return invoke_ai(system_message=SYSTEM_PROMPT, user_message=user_message)
+        return invoke_ai2(None, None, system_message=SYSTEM_PROMPT, user_message=user_message)

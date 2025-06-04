@@ -1,4 +1,5 @@
 from openai import OpenAI
+import os
 
 
 def invoke_ai(system_message: str, user_message: str) -> str:
@@ -20,14 +21,19 @@ def invoke_ai(system_message: str, user_message: str) -> str:
 from ollama_remote_client import OllamaRemoteClient
 
 def invoke_ai2(
-    ollama_url: str,
-    ollama_model: str,
+    ollama_url: str | None,
+    ollama_model: str | None,
     system_message: str,
     user_message: str,
 ) -> str:
     """
     Invia due messaggi (system e user) al modello Ollama e restituisce la risposta.
     """
+
+    if ollama_url is None:
+        ollama_url = os.getenv("OLLAMA_URL", "http://localhost:11434")
+    if ollama_model is None:
+        ollama_model = os.getenv("OLLAMA_MODEL", "phi3")
 
     llm = OllamaRemoteClient(ollama_url, ollama_model)
 
